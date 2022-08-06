@@ -11,16 +11,22 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
-const initialState = {
-  email: "",
-  password: "",
-}
 
 const Login = () => {
-  const [formState, setFormState] = useState();
+  const initialState = {
+    email: "",
+    password: "",
+  }
+  const [formState, setFormState] = useState(initialState);
   const { email, password } = formState
+  const handleSubmit = (e) => {
+    
+  }
   return (
-    <div>Login</div>
+    <div>
+      <h5>Sign</h5>
+      <form onSubmit={handleSubmit}></form>
+    </div>
   )
 }
 export default Login

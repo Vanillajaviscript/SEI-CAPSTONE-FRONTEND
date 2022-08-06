@@ -3,7 +3,10 @@
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      place all dogs here
+      
+    </div>
   )
 }
 export default Home

@@ -13,8 +13,9 @@ import { Link, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { toast } from "react-toastify";
 import { login } from "../redux/features/authSlice";
+import {GoogleLogin} from "react-google-login";
 
-const Login = () => {
+const Login = ({googleSignin}) => {
   const initialState = {
     email: "",
     password: "",
@@ -48,6 +49,18 @@ const Login = () => {
       [name]: value, 
     })
   };
+  const googleSuccess = (res) => {
+    const email = res?.profileObj?.email;
+    const name = res?.profileObj?.name;
+    const token = res?.token;
+    const googleId = res?.googleId;
+    const result = {email, name, token, googleId}
+    dispatch(googleSignin({result, navigate, toast}))
+  };
+
+  const googleFailure = (error) => {
+    toast.error(error)
+  }
   return (
     <div
       style={{
@@ -55,11 +68,11 @@ const Login = () => {
         marginTop: "120px",
         padding: "15px",
         maxWidth: "450px",
-        alignContent: "center"
+        alignContent: "center",
       }}
     >
       <MDBCard alignment="center">
-        <MDBIcon fas icon="dog" className="fa-2x" />
+        <MDBIcon fas icon="dog" className="fa-4x" />
         <h4>Login</h4>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">
@@ -99,6 +112,23 @@ const Login = () => {
               </MDBBtn>
             </div>
           </MDBValidation>
+          <br />
+          <GoogleLogin
+          clientId="19320938948-slbbudv3h1oolbebj1v4fmd62j82juqe.apps.googleusercontent.com"
+          render={(renderProps) => (
+            <MDBBtn 
+              style={{width: "100%"}} 
+              color="danger" 
+              onClick={(renderProps.onClick)} 
+              disabled={renderProps.disabled}
+            >
+                <MDBIcon style={{color: 'green'}} className="me-2" fab icon="google" />Sign in with Google
+            </MDBBtn>
+          )}
+          onSuccess={googleSuccess}
+          onFailure={googleFailure}
+          cookiePolicy="single_host_origin"
+          />
         </MDBCardBody>
         <MDBCardFooter>
           <Link to="/register">

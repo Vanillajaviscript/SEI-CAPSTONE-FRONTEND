@@ -65,7 +65,7 @@ const Register = () => {
       }}
     >
       <MDBCard alignment="center">
-        <MDBIcon fas icon="bone" className="fa-2x" />
+        <MDBIcon fas icon="paw" className="fa-4x" />
         <h4>Register</h4>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">

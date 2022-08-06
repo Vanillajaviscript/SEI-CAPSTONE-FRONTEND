@@ -20,10 +20,18 @@ const Login = () => {
   const [formState, setFormState] = useState(initialState);
   const { email, password } = formState
   const handleSubmit = (e) => {
-    
-  };
-  const onChange = () => {
+    e.preventDefault();
 
+  };
+  const onChange = (e) => {
+    let {name, value} = e.target;
+    setFormState({
+      ...formState,
+      [name]: value, 
+    })
+    if(!e.target) {
+      return <h1>Please enter email</h1>
+    }
   };
   return (
     <div
@@ -48,8 +56,7 @@ const Login = () => {
                 name="email"
                 onChange={onChange}
                 required
-                invalid
-                validation="Please enter your email"
+                invalid={MDBInput.invalid}
               />
             </div>
             <div>
@@ -60,8 +67,7 @@ const Login = () => {
                 name="password"
                 onChange={onChange}
                 required
-                invalid
-                validation="Please enter your password"
+                invalid={MDBInput.invalid}
               />
             </div>
             <div className="col-12">

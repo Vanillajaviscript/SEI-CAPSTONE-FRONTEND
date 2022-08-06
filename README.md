@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
 ```
 
 
-### Libraries/ Technologies
+### Libraries/ Technologies/ Database
 
 - Express
 - Node.js
@@ -38,6 +38,7 @@ const userSchema = mongoose.Schema({
 - Bootstrap
 - JWT
 - Google Authentication
+- MongoDB
 
 #### Goal for each day
 <br>

@@ -9,8 +9,10 @@ import {
   MDBIcon,
   MDBSpinner
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {toast} from "react-toastify";
+import { login } from "../redux/features/authSlice";
 
 const Login = () => {
   const initialState = {
@@ -18,11 +20,26 @@ const Login = () => {
     password: "",
   }
   const [formState, setFormState] = useState(initialState);
-  const { email, password } = formState
+  const { email, password } = formState;
+
+  //Dispatches Action to authSlice.js file
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  //Submit function for form
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if(email && password) {
+      //useDispatch to provide action to login and toastify to show successful message
+      dispatch(login({
+        formState, 
+        navigate, 
+        toast
+      }))
+    }
   };
+
   const onChange = (e) => {
     let {name, value} = e.target;
     setFormState({

@@ -14,6 +14,16 @@ Dog Rescue:
 
 ---
 
+### User Stories
+- As a user, I want to:
+  - Create, read, update, and delete a dog post
+  - Be authenticate to perform crud operations
+  - 
+
+### Wireframe
+
+<img src="https://i.imgur.com/b91rk20.png">
+
 ### Schema
 
 ```js

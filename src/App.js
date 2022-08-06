@@ -10,7 +10,7 @@ const App = () => {
   return (
   <Router>
     <div className="App">
-      <ToastContainer />
+      <ToastContainer position='top-left' />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

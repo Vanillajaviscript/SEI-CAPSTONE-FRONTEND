@@ -11,7 +11,7 @@ import {
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { login } from "../redux/features/authSlice";
 
 const Login = () => {
@@ -20,6 +20,7 @@ const Login = () => {
     password: "",
   }
   const [formState, setFormState] = useState(initialState);
+  const {loading, error} = useSelector((state) => ({...state.auth}))
   const { email, password } = formState;
 
   //Dispatches Action to authSlice.js file
@@ -27,16 +28,16 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
   //Submit function for form
   const handleSubmit = (e) => {
     e.preventDefault();
     if(email && password) {
       //useDispatch to provide action to login and toastify to show successful message
-      dispatch(login({
-        formState, 
-        navigate, 
-        toast
-      }))
+      dispatch(login({formState, navigate, toast}));
     }
   };
 
@@ -46,9 +47,6 @@ const Login = () => {
       ...formState,
       [name]: value, 
     })
-    if(!e.target) {
-      return <h1>Please enter email</h1>
-    }
   };
   return (
     <div
@@ -61,11 +59,11 @@ const Login = () => {
       }}
     >
       <MDBCard alignment="center">
-        <MDBIcon fas icon="user-circle" className="fa-2x" />
-        <h4>Sign In</h4>
+        <MDBIcon fas icon="dog" className="fa-2x" />
+        <h4>Login</h4>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} noValidate className="row g-3">
-            <div>
+            <div className="col-md-12">
               <MDBInput
                 label="Email"
                 type="email"
@@ -76,7 +74,7 @@ const Login = () => {
                 invalid={MDBInput.invalid}
               />
             </div>
-            <div>
+            <div className="col-md-12">
               <MDBInput
                 label="Password"
                 type="password"
@@ -87,8 +85,16 @@ const Login = () => {
                 invalid={MDBInput.invalid}
               />
             </div>
-            <div className="col-12">
+            <div className="col-md-12">
               <MDBBtn style={{width: "100%"}} className="mt-2">
+                {loading && (
+                  <MDBSpinner
+                  size="sm"
+                  role="status"
+                  tag="span"
+                  className="me-2"
+                  />
+                )}
                 Login
               </MDBBtn>
             </div>

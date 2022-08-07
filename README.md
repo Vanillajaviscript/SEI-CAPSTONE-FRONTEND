@@ -1,13 +1,13 @@
-# Dog Rescue Application
+# Animal Rights Application
 
 ---
-<img src="https://www.plasterersforum.com/attachments/yulin-dog-meat-festival-jpg.30543/">
+<img src="https://www.essereanimali.org/wp-content/uploads/2018/06/problema-diritti-animali_essereanimali.png">
 
 ---
 ## Project Idea
 <br>
 
-Dog Rescue:
+Animal Rights:
 
 - Create, Read, Update, Delete
 - Authentication using Google and email/password
@@ -16,7 +16,7 @@ Dog Rescue:
 
 ### User Stories
 - As a user, I want to:
-  - Create, read, update, and delete a dog post
+  - Create, read, update, and delete an animal post
   - Be authenticate to perform crud operations
   - 
 
@@ -53,6 +53,6 @@ const userSchema = mongoose.Schema({
 #### Goal for each day
 <br>
 
-| Dog Rescue | Fri | Sat | Sun | Mon | Tue | Wed
+| Animal Rights | Fri | Sat | Sun | Mon | Tue | Wed
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Goals | Backend | Setup Authentication | Frontend  | Style pages | Add more logic if time allows | Finishing touches|

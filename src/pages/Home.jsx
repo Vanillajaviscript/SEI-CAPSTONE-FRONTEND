@@ -14,10 +14,10 @@ const Home = () => {
           <MDBCarouselElement src='https://images.squarespace-cdn.com/content/v1/5a9c54e875f9eef8f485bcfa/1610289912735-85BA1HKPJZJ9IS8NDZ1D/slaughterhouse-cow-captive-bolt.jpg?format=1000w' alt='...' />
         </MDBCarouselItem>
         <MDBCarouselItem>
-          <MDBCarouselElement src='https://i.guim.co.uk/img/media/658e44aac38b6461f5347a19881d906e02aaf72b/0_192_5760_3456/master/5760.jpg?width=1010&quality=85&auto=format&fit=max&s=9b8b9ef08c342da68f3d0566ae873ee7' alt='...' />
+          <MDBCarouselElement src='https://images.squarespace-cdn.com/content/v1/5a9c54e875f9eef8f485bcfa/1610289981556-RNIKO5DPSENB8DREF8V3/pig-slaughterhouse-worker.jpg?format=1000w' alt='...' />
         </MDBCarouselItem>
         <MDBCarouselItem>
-          <MDBCarouselElement src='https://images.squarespace-cdn.com/content/v1/5a9c54e875f9eef8f485bcfa/1610289300419-RLM69T0OC3TT45H7I798/VEG_AmbDairy15_SL18.jpg?format=1000w' alt='...' />
+          <MDBCarouselElement src='https://images.squarespace-cdn.com/content/v1/5a9c54e875f9eef8f485bcfa/1610289559794-0UNP08HU535NGK2JSF9U/hatchery-laying-hens-2018-13_46423856584_o-e1558462102435.jpg?format=1000w' alt='...' />
         </MDBCarouselItem>
       </MDBCarouselInner>
     </MDBCarousel>

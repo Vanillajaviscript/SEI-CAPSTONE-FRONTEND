@@ -43,6 +43,9 @@ const NavBar = () => {
     </MDBNavbarToggler>
     <MDBCollapse show={navState} navbar>
       <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
+        {user?.result?._id && (
+          <h5 style={{marginRight: "30px", marginTop: "17px"}}>Welcome, {user?.result?.name}</h5>
+        )}
         <MDBNavbarItem>
           <MDBNavbarLink href="/">
             <p className="nav-link">Home</p>

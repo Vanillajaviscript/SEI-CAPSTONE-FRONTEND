@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import NavBar from "./components/NavBar";
 import { useDispatch } from 'react-redux';
 import { setUser } from './redux/features/authSlice';
+import AddEditAnimal from './pages/AddEditAnimal';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/createanimal" element={<AddEditAnimal />} />
+        <Route path="/editanimal/:id" element={<AddEditAnimal />} />
       </Routes>
     </div>
   </Router>

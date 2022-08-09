@@ -8,7 +8,7 @@ import {
 
 const Home = () => {
   return (
-    <MDBCarousel showControls interval={5000}>
+    <MDBCarousel showControls interval={3000}>
       <MDBCarouselInner>
         <MDBCarouselItem className='active'>
           <MDBCarouselElement src='https://images.squarespace-cdn.com/content/v1/5a9c54e875f9eef8f485bcfa/1610289912735-85BA1HKPJZJ9IS8NDZ1D/slaughterhouse-cow-captive-bolt.jpg?format=1000w' alt='...' />

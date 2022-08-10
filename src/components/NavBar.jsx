@@ -54,7 +54,7 @@ const NavBar = () => {
         {user?.result?._id && (
           <>
          <MDBNavbarItem>
-          <MDBNavbarLink href="/createanimal">
+          <MDBNavbarLink href="/animals">
             <p className="nav-link">Post</p>
           </MDBNavbarLink>
         </MDBNavbarItem>

@@ -16,18 +16,7 @@ export const login = createAsyncThunk("auth/login", async({formState, navigate, 
 export const register = createAsyncThunk("auth/register", async({formState, navigate, toast}, {rejectWithValue}) => {
   try {
     const response = await api.signUp(formState);
-    toast.success("You are now registered, login to adopt today!");
-    navigate("/");
-    return response.data;
-  } catch(error) {
-    return rejectWithValue(error.response.data);
-  }
-});
-
-export const googleSignin = createAsyncThunk("auth/googlesignin", async({result, navigate, toast}, {rejectWithValue}) => {
-  try {
-    const response = await api.googleSignin(result);
-    toast.success("You are now signed in with Google and ready to adopt!");
+    toast.success("You are now registered!");
     navigate("/");
     return response.data;
   } catch(error) {
@@ -76,20 +65,6 @@ const authSlice = createSlice({
       state.user = action.payload
     },
     [register.rejected]: (state, action) => {
-      state.loading = false;
-      //Message refers to user controller error message
-      state.error = action.payload.message;
-    },
-    [googleSignin.pending]: (state, action) => {
-      state.loading = true
-    },
-    [googleSignin.fulfilled]: (state, action) => {
-      state.loading = false;
-      //setItem() adds a key and a value to localstorage
-      localStorage.setItem("profile", JSON.stringify({...action.payload}));
-      state.user = action.payload
-    },
-    [googleSignin.rejected]: (state, action) => {
       state.loading = false;
       //Message refers to user controller error message
       state.error = action.payload.message;

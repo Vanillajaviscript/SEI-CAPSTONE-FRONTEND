@@ -1,17 +1,19 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   MDBCard,
   MDBCardBody,
   MDBCardFooter,
   MDBValidation,
   MDBBtn,
-  MDBSpinner
+  MDBSpinner,
+  MDBInput
 } from "mdb-react-ui-kit";
 import ChipInput from "material-ui-chip-input";
 import FileBase from "react-file-base64"
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { TextField } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { createAnimal } from "../redux/api";
 
 const AddEditAnimal = () => {
   const initialState = {
@@ -20,15 +22,32 @@ const AddEditAnimal = () => {
     description: "",
   }
   const [animal, setAnimal] = useState(initialState);
-  const {title, name, description} = initialState;
+  const {error, loading} = useSelector((state) => ({...state.animal}));
+  const { user } = useSelector((state) => ({ ...state.auth}));
+  const dispatch = useDispatch();
+  const {title, name, description} = animal;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(title && name && description) {
+      const updatedAnimal = {...animal, name: user?.result?.name};
+      dispatch(createAnimal({updatedAnimal, navigate, toast}));
+      handleClear()
+    }
   }
-  const onChange = () => {
-
+  const onChange = (e) => {
+    const {name, value } = e.target;
+    setAnimal({
+      ...animal,
+      [name]: value
+    })
   }
-  const handleDelete = () => {
+  const handleClear = () => {
 
   }
   return (
@@ -51,8 +70,7 @@ const AddEditAnimal = () => {
             onChange={onChange}
             className="form-control"
             required
-            invalid
-            validation="Title Required"
+            invalid={MDBInput.invalid}
             />
           </div>
           <div className="col-md-12">
@@ -76,19 +94,20 @@ const AddEditAnimal = () => {
             onChange={onChange}
             className="form-control"
             required
-            invalid
-            validation="Description Required"
+            invalid={MDBInput.invalid}
             />
           </div>
           <div className="d-flex justify-content-start">
-            <FileBase type="file" multiple={false} onDone={(({base64}) => setAnimal({
-              ...animal,
-              imageFile: base64
-            }))} />
+            <FileBase 
+            type="file" 
+            multiple={false} 
+            onDone={({base64}) => setAnimal({...animal, imageFile: base64})
+            } 
+          />
           </div>
           <div className="col-12">
             <MDBBtn style={{width: "100%"}}>Submit</MDBBtn>
-            <MDBBtn style={{width: "100%"}} className="mt-2" color="danger" onClick={handleDelete}>Delete</MDBBtn>
+            <MDBBtn style={{width: "100%"}} className="mt-2" color="danger" onClick={handleClear}>Clear</MDBBtn>
           </div>
         </MDBValidation>
         </MDBCardBody>
@@ -97,3 +116,4 @@ const AddEditAnimal = () => {
   )
 }
 export default AddEditAnimal
+//////////////////////////////////////////////////
